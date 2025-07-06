@@ -26,7 +26,7 @@
     }
 
     #logo-container img {
-      max-height: 8vh; /* Auto-adjusts based on viewport height */
+      max-height: 8vh; /* Scales based on screen height */
       max-width: 40%;
       height: auto;
       width: auto;
@@ -45,24 +45,20 @@
 </head>
 <body>
 
+  <!-- Logo -->
   <div id="logo-container">
     <img src="assets/Nalashaa_Logo1.png" alt="Nalashaa Logo">
   </div>
 
-  <div id="cd-widget">
-    <iframe
-      src="https://agency-dccql5.chat-dash.com/iframe/68692f8bc1bb7f6a7e423805"
-      allow="microphone"
-      title="Voice Assistant Widget"
-    ></iframe>
-  </div>
+  <!-- Retell Voice Widget -->
+  <div id="cd-widget"></div>
 
   <script>
     (function () {
       if (window.chatWidgetScriptLoaded) return;
 
       window.ChatWidgetConfig = {
-        projectId: "68692f8bc1bb7f6a7e423805",
+        projectId: "686a0eacc1bb7f6a7e8ec794",
       };
 
       var chatWidgetScript = document.createElement("script");
@@ -73,6 +69,13 @@
       window.chatWidgetScriptLoaded = true;
     })();
   </script>
+
+  <!-- Fallback iframe for direct rendering -->
+  <iframe
+    src="https://agency-dccql5.chat-dash.com/iframe/686a0eacc1bb7f6a7e8ec794"
+    allow="microphone"
+    title="Nalashaa Voice Bot"
+  ></iframe>
 
 </body>
 </html>
