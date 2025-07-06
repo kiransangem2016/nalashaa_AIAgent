@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Nalashaa Voice Assistant</title>
+  <title>Nalashaa Voice & Chat Assistant</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     html, body {
@@ -26,13 +26,13 @@
     }
 
     #logo-container img {
-      max-height: 8vh; /* Scales based on screen height */
+      max-height: 8vh;
       max-width: 40%;
       height: auto;
       width: auto;
     }
 
-    #cd-widget {
+    #voice-agent {
       flex-grow: 1;
     }
 
@@ -41,24 +41,67 @@
       height: 100%;
       border: none;
     }
+
+    .container {
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    h1 {
+      color: #1976d2;
+    }
+
+    p {
+      color: #333;
+      font-size: 1.1em;
+    }
   </style>
+
+  <!-- Retell AI Chat Widget Embed -->
+  <script
+    id="retell-widget"
+    src="https://dashboard.retellai.com/retell-widget.js"
+    type="module"
+    data-public-key="key_dd67fba64602d3a38fc800300ee8"
+    data-agent-id="agent_cf9933693db7aa7550d94c825d"
+    data-agent-version="2"
+    data-title="Nalashaa Digital Chat Agent"
+    data-logo-url="https://kiransangem2016.github.io/nalashaa_AIAgent/assets/Nalashaa_Logo1.png"
+    data-color="#1976d2"
+  ></script>
+  <!-- End Retell AI Chat Widget -->
+
 </head>
 <body>
 
-  <!-- Logo -->
   <div id="logo-container">
     <img src="assets/Nalashaa_Logo1.png" alt="Nalashaa Logo">
   </div>
 
-  <!-- Retell Voice Widget -->
-  <div id="cd-widget"></div>
+  <div class="container">
+    <h1>Welcome to Nalashaa Digital Assistants</h1>
+    <p>You can interact with our <strong>Voice Assistant</strong> below or use the <strong>Chat Widget</strong> in the corner.</p>
+  </div>
+
+  <div id="voice-agent">
+    <iframe
+      src="https://agency-dccql5.chat-dash.com/prototype/686a0eacc1bb7f6a7e8ec794"
+      allow="microphone"
+      title="Voice Assistant Widget"
+    ></iframe>
+  </div>
 
   <script>
     (function () {
       if (window.chatWidgetScriptLoaded) return;
 
       window.ChatWidgetConfig = {
-        projectId: "686a0eacc1bb7f6a7e8ec794",
+        projectId: "68692f8bc1bb7f6a7e423805",
       };
 
       var chatWidgetScript = document.createElement("script");
@@ -69,13 +112,6 @@
       window.chatWidgetScriptLoaded = true;
     })();
   </script>
-
-  <!-- Fallback iframe for direct rendering -->
-  <iframe
-    src="https://agency-dccql5.chat-dash.com/iframe/686a0eacc1bb7f6a7e8ec794"
-    allow="microphone"
-    title="Nalashaa Voice Bot"
-  ></iframe>
 
 </body>
 </html>
