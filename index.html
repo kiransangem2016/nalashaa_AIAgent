@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Nalashaa Voice & Chat Assistant</title>
+  <title>Nalashaa Assistants</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     html, body {
@@ -10,36 +10,20 @@
       padding: 0;
       height: 100%;
       font-family: Arial, sans-serif;
-      display: flex;
-      flex-direction: column;
+      background-color: #f4f4f4;
     }
 
     #logo-container {
-      width: 100%;
-      background-color: #f4f4f4;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      background: #fff;
       padding: 10px;
+      text-align: center;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      flex-shrink: 0;
     }
 
     #logo-container img {
       max-height: 8vh;
-      max-width: 40%;
+      max-width: 200px;
       height: auto;
-      width: auto;
-    }
-
-    #voice-agent {
-      flex-grow: 1;
-    }
-
-    iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
     }
 
     .container {
@@ -52,17 +36,62 @@
       text-align: center;
     }
 
-    h1 {
-      color: #1976d2;
+    .floating-icon {
+      position: fixed;
+      bottom: 20px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background-color: #1976d2;
+      color: white;
+      font-size: 28px;
+      text-align: center;
+      line-height: 60px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      z-index: 1000;
     }
 
-    p {
-      color: #333;
-      font-size: 1.1em;
+    #voiceBtn {
+      right: 90px;
+    }
+
+    #chatBtn {
+      right: 20px;
+    }
+
+    .assistant-modal {
+      display: none;
+      position: fixed;
+      top: 60px;
+      left: 0;
+      width: 100%;
+      height: calc(100% - 60px);
+      background: rgba(0, 0, 0, 0.3);
+      z-index: 999;
+    }
+
+    .assistant-modal iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      background: red;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 4px 10px;
+      cursor: pointer;
+      z-index: 1001;
     }
   </style>
 
-  <!-- Retell AI Chat Widget Embed -->
+  <!-- Retell Chat Widget Embed -->
   <script
     id="retell-widget"
     src="https://dashboard.retellai.com/retell-widget.js"
@@ -74,8 +103,6 @@
     data-logo-url="https://kiransangem2016.github.io/nalashaa_AIAgent/assets/Nalashaa_Logo1.png"
     data-color="#1976d2"
   ></script>
-  <!-- End Retell AI Chat Widget -->
-
 </head>
 <body>
 
@@ -85,17 +112,20 @@
 
   <div class="container">
     <h1>Welcome to Nalashaa Digital Assistants</h1>
-    <p>You can interact with our <strong>Voice Assistant</strong> below or use the <strong>Chat Widget</strong> in the corner.</p>
+    <p>Click one of the icons below to interact with our Voice or Chat Assistant.</p>
   </div>
 
-  <div id="voice-agent">
-    <iframe
-      src="https://agency-dccql5.chat-dash.com/prototype/686a0eacc1bb7f6a7e8ec794"
-      allow="microphone"
-      title="Voice Assistant Widget"
-    ></iframe>
+  <!-- Floating Icons -->
+  <div id="voiceBtn" class="floating-icon" title="Voice Assistant">🎤</div>
+  <div id="chatBtn" class="floating-icon" title="Chat Assistant">💬</div>
+
+  <!-- Voice Assistant Modal -->
+  <div id="voiceModal" class="assistant-modal">
+    <button class="close-btn" onclick="document.getElementById('voiceModal').style.display='none'">Close ✖</button>
+    <iframe src="https://agency-dccql5.chat-dash.com/prototype/686a0eacc1bb7f6a7e8ec794" allow="microphone"></iframe>
   </div>
 
+  <!-- Voice Assistant Script Loader -->
   <script>
     (function () {
       if (window.chatWidgetScriptLoaded) return;
@@ -111,6 +141,17 @@
 
       window.chatWidgetScriptLoaded = true;
     })();
+
+    // Event handlers
+    document.getElementById("voiceBtn").onclick = function () {
+      document.getElementById("voiceModal").style.display = "block";
+    };
+
+    document.getElementById("chatBtn").onclick = function () {
+      // Triggers Retell AI chat widget toggle (already floating)
+      const event = new CustomEvent("retell-toggle-chat");
+      window.dispatchEvent(event);
+    };
   </script>
 
 </body>
